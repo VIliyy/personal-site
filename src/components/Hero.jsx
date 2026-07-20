@@ -24,60 +24,20 @@ function scrollTo(target) {
 
 export default function Hero() {
   const videoRef = useRef(null);
-  const hlsRef = useRef(null);
   const [roleIndex, setRoleIndex] = useState(0);
   const [scrolled, setScrolled] = useState(false);
 
-  useEffect(() => {
+    useEffect(() => {
     const video = videoRef.current;
     if (!video) return;
-
-    try {
-      if (window.Hls && window.Hls.isSupported()) {
-        const hls = new window.Hls();
-        hls.loadSource("https://stream.mux.com/Aa02T7oM1wH5Mk5EEVDYhbZ1ChcdhRsS2m1NYyx4Ua1g.m3u8");
-        hls.attachMedia(video);
-        hlsRef.current = hls;
-      } else if (video.canPlayType("application/vnd.apple.mpegurl")) {
-        video.src = "https://stream.mux.com/Aa02T7oM1wH5Mk5EEVDYhbZ1ChcdhRsS2m1NYyx4Ua1g.m3u8";
-      }
-      video.play().catch(() => {});
-    } catch (e) {
-      console.warn("HLS video failed:", e);
-    }
-
-    const onScroll = () => setScrolled(window.scrollY > 100);
-    window.addEventListener("scroll", onScroll, { passive: true });
-
-    const roleInterval = setInterval(() => {
-      setRoleIndex((prev) => (prev + 1) % ROLES.length);
-    }, 2000);
-
-    try {
-      const tl = gsap.timeline();
-      tl.to(".name-reveal", {
-        opacity: 1, y: 0, duration: 1.2, ease: "power3.out", delay: 0.1,
-      });
-      tl.to(".blur-in", {
-        opacity: 1, filter: "blur(0px)", y: 0,
-        duration: 1, stagger: 0.1, ease: "power2.out", delay: 0.3,
-      }, "-=0.8");
-    } catch (e) {
-      console.warn("GSAP animation failed:", e);
-    }
-
-    return () => {
-      window.removeEventListener("scroll", onScroll);
-      clearInterval(roleInterval);
-      if (hlsRef.current) hlsRef.current.destroy();
-    };
+    video.play().catch(() => {});
   }, []);
 
   const navClass = scrolled ? styles.nav + " " + styles.navShadow : styles.nav;
 
   return (
     <section className={styles.hero}>
-      <video ref={videoRef} className={styles.videoBg} autoPlay muted loop playsInline />
+      <video ref={videoRef} className={styles.videoBg} src="/hero-video.mp4" autoPlay muted loop playsInline />
       <div className={styles.overlay} />
       <div className={styles.bottomFade} />
 
