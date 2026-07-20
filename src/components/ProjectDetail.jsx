@@ -144,7 +144,7 @@ export default function ProjectDetail() {
                 <li>面试题生成：基于 JD 自动出题 + STAR 法则润色答案</li>
                 <li>多平台打招呼语：Boss / 拉勾 / 猎聘，一键生成</li>
               </ul>
-              <img src="/images/项目2.png" alt="简历匹配优化" style={{width:"100%",borderRadius:12,marginTop:16,border:"1px solid rgba(255,255,255,0.06)"}} />
+              <img src="/images/项目3.png" alt="简历匹配优化" style={{width:"100%",borderRadius:12,marginTop:16,border:"1px solid rgba(255,255,255,0.06)"}} />
             </FeatureBlock>
 
             {/* 功能3 */}
@@ -157,7 +157,7 @@ export default function ProjectDetail() {
                 <li>标签分类 + 时间记录</li>
                 <li>刷新不丢失</li>
               </ul>
-              <img src="/images/项目3.png" alt="学习队列" style={{width:"100%",borderRadius:12,marginTop:16,border:"1px solid rgba(255,255,255,0.06)"}} />
+              <img src="/images/项目2.png" alt="学习队列" style={{width:"100%",borderRadius:12,marginTop:16,border:"1px solid rgba(255,255,255,0.06)"}} />
             </FeatureBlock>
           </div>
         </Block>
