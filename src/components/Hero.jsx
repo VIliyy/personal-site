@@ -27,10 +27,36 @@ export default function Hero() {
   const [roleIndex, setRoleIndex] = useState(0);
   const [scrolled, setScrolled] = useState(false);
 
-    useEffect(() => {
+  useEffect(() => {
     const video = videoRef.current;
     if (!video) return;
+
     video.play().catch(() => {});
+
+    const onScroll = () => setScrolled(window.scrollY > 100);
+    window.addEventListener("scroll", onScroll, { passive: true });
+
+    const roleInterval = setInterval(() => {
+      setRoleIndex((prev) => (prev + 1) % ROLES.length);
+    }, 2000);
+
+    try {
+      const tl = gsap.timeline();
+      tl.to(".name-reveal", {
+        opacity: 1, y: 0, duration: 1.2, ease: "power3.out", delay: 0.1,
+      });
+      tl.to(".blur-in", {
+        opacity: 1, filter: "blur(0px)", y: 0,
+        duration: 1, stagger: 0.1, ease: "power2.out", delay: 0.3,
+      }, "-=0.8");
+    } catch (e) {
+      console.warn("GSAP animation failed:", e);
+    }
+
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      clearInterval(roleInterval);
+    };
   }, []);
 
   const navClass = scrolled ? styles.nav + " " + styles.navShadow : styles.nav;
