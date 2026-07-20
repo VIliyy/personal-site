@@ -1,0 +1,161 @@
+﻿/* Section bg decorations */
+.decoOrb1 {
+  position: absolute;
+  width: 350px;
+  height: 350px;
+  left: -80px;
+  top: 20%;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(91, 184, 244, 0.04) 0%, transparent 70%);
+  filter: blur(50px);
+  pointer-events: none;
+}
+
+.decoOrb2 {
+  position: absolute;
+  width: 300px;
+  height: 300px;
+  right: 5%;
+  bottom: 15%;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(139, 92, 246, 0.04) 0%, transparent 70%);
+  filter: blur(45px);
+  pointer-events: none;
+}
+
+.decoLine {
+  position: absolute;
+  width: 1px;
+  height: 200px;
+  left: 50%;
+  top: 10%;
+  background: linear-gradient(to bottom, transparent, rgba(91, 184, 244, 0.06), transparent);
+  pointer-events: none;
+}
+
+/* Grid */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+  margin-top: 48px;
+}
+
+/* Card */
+.card {
+  background: var(--bg-card);
+  border: 1px solid rgba(255, 255, 255, 0.04);
+  border-radius: 18px;
+  padding: 28px 24px;
+  transition: all 0.35s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 50% 0%, rgba(91, 184, 244, 0.04) 0%, transparent 50%);
+  opacity: 0;
+  transition: opacity 0.35s;
+}
+
+.card:hover::before {
+  opacity: 1;
+}
+
+.card:hover {
+  border-color: rgba(91, 184, 244, 0.1);
+  box-shadow: 0 6px 32px rgba(0, 0, 0, 0.3);
+  transform: translateY(-3px);
+}
+
+/* Accent colors */
+.card_accent_cyan:hover { border-color: rgba(91, 184, 244, 0.15); }
+.card_accent_purple:hover { border-color: rgba(139, 92, 246, 0.15); }
+.card_accent_teal:hover { border-color: rgba(58, 184, 160, 0.15); }
+.card_accent_warm:hover { border-color: rgba(200, 149, 110, 0.15); }
+
+.cardHeader {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 24px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+  position: relative;
+  z-index: 1;
+}
+
+.cardIcon {
+  font-size: 1.1rem;
+  color: var(--accent-cyan);
+}
+
+.cardTitle {
+  font-size: 0.92rem;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.skillList {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  position: relative;
+  z-index: 1;
+}
+
+.skillInfo {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 5px;
+}
+
+.skillName {
+  font-size: 0.78rem;
+  color: var(--text-secondary);
+}
+
+.skillPct {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  color: var(--text-muted);
+}
+
+.skillBar {
+  height: 3px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.skillFill {
+  height: 100%;
+  border-radius: 2px;
+  transition: width 1s ease;
+  position: relative;
+}
+
+.card_accent_cyan .skillFill {
+  background: linear-gradient(90deg, var(--accent-cyan), rgba(74, 124, 247, 0.8));
+}
+.card_accent_purple .skillFill {
+  background: linear-gradient(90deg, var(--accent-purple), rgba(168, 85, 247, 0.8));
+}
+.card_accent_teal .skillFill {
+  background: linear-gradient(90deg, var(--accent-teal), rgba(91, 184, 244, 0.8));
+}
+.card_accent_warm .skillFill {
+  background: linear-gradient(90deg, var(--accent-warm), rgba(212, 106, 138, 0.6));
+}
+
+@media (max-width: 1200px) {
+  .grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 600px) {
+  .grid { grid-template-columns: 1fr; }
+}

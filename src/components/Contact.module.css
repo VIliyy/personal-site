@@ -1,0 +1,201 @@
+﻿.bg {
+  position: relative;
+  background: transparent;
+  overflow: hidden;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+}
+
+.collageOrb1 {
+  position: absolute;
+  width: 500px;
+  height: 500px;
+  right: -120px;
+  top: -80px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(91, 184, 244, 0.06) 0%, rgba(139, 92, 246, 0.03) 50%, transparent 70%);
+  filter: blur(60px);
+  pointer-events: none;
+  animation: driftOrb 30s ease-in-out infinite;
+}
+
+.collageOrb2 {
+  position: absolute;
+  width: 400px;
+  height: 400px;
+  left: -100px;
+  bottom: -60px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(139, 92, 246, 0.05) 0%, rgba(91, 184, 244, 0.03) 50%, transparent 70%);
+  filter: blur(50px);
+  pointer-events: none;
+  animation: driftOrb 35s ease-in-out infinite reverse;
+}
+
+.collageRing1 {
+  position: absolute;
+  width: 300px;
+  height: 300px;
+  right: 15%;
+  bottom: 25%;
+  border: 1px solid rgba(91, 184, 244, 0.05);
+  border-radius: 50%;
+  pointer-events: none;
+  animation: spinRing 40s linear infinite;
+}
+
+.collageBlob1 {
+  position: absolute;
+  width: 300px;
+  height: 300px;
+  left: 20%;
+  top: 20%;
+  background: radial-gradient(ellipse, rgba(212, 106, 138, 0.04) 0%, transparent 60%);
+  filter: blur(30px);
+  border-radius: 40% 60% 50% 50% / 60% 40% 60% 40%;
+  pointer-events: none;
+  animation: morphBlob 25s ease-in-out infinite;
+}
+
+@keyframes driftOrb {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(30px, -20px) scale(1.05); }
+}
+
+@keyframes spinRing {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes morphBlob {
+  0%, 100% { border-radius: 40% 60% 50% 50% / 60% 40% 60% 40%; }
+  50% { border-radius: 60% 40% 40% 60% / 40% 60% 40% 60%; }
+}
+
+.title {
+  text-align: center;
+  margin-bottom: 16px;
+}
+
+.desc {
+  font-size: 1.05rem;
+  color: var(--text-secondary);
+  line-height: 1.8;
+  margin-bottom: 56px;
+  text-align: center;
+}
+
+.cards {
+  display: flex;
+  gap: 24px;
+  margin-bottom: 80px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.card {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  background: var(--bg-card);
+  border: 1px solid rgba(255, 255, 255, 0.04);
+  border-radius: 16px;
+  padding: 24px 28px;
+  min-width: 260px;
+  transition: all 0.35s ease;
+  cursor: default;
+  position: relative;
+  overflow: hidden;
+}
+
+.card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 0% 0%, rgba(91, 184, 244, 0.04) 0%, transparent 50%);
+  opacity: 0;
+  transition: opacity 0.35s;
+}
+
+.card:hover::before {
+  opacity: 1;
+}
+
+a.card {
+  cursor: pointer;
+}
+
+a.card:hover {
+  border-color: rgba(91, 184, 244, 0.15);
+  box-shadow: 0 0 32px rgba(91, 184, 244, 0.08);
+  transform: translateY(-3px);
+}
+
+.cardIcon {
+  font-size: 1.4rem;
+  opacity: 0.7;
+  position: relative;
+  z-index: 1;
+}
+
+.cardLabel {
+  display: block;
+  font-size: 0.68rem;
+  font-family: var(--font-mono);
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: 4px;
+  position: relative;
+  z-index: 1;
+}
+
+.cardValue {
+  font-size: 0.88rem;
+  color: var(--text-primary);
+  font-weight: 500;
+  position: relative;
+  z-index: 1;
+}
+
+.cardArrow {
+  color: var(--accent-cyan);
+  font-size: 1.1rem;
+  opacity: 0;
+  transform: translateX(-8px);
+  transition: all 0.3s ease;
+  position: relative;
+  z-index: 1;
+}
+
+a.card:hover .cardArrow {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding-top: 40px;
+  border-top: 1px solid rgba(255, 255, 255, 0.04);
+}
+
+.footerLogo {
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+}
+
+.footerText {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+}
+
+@media (max-width: 768px) {
+  .cards { flex-direction: column; align-items: center; }
+  .card { min-width: 100%; }
+  .footer { flex-direction: column; gap: 12px; text-align: center; }
+}
